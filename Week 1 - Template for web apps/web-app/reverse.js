@@ -6,3 +6,5 @@ Reverse.reverse = function (string) {
 };
 
 export default Object.freeze(Reverse);
+
+// added comments
