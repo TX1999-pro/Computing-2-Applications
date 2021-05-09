@@ -14,8 +14,8 @@ const Exam = Object.create(null);
 //    for example:
 //      an input list of [1,2,3,4,5,6,7,8]
 //      returns [1,4,7]
-Exam.every_third = function (arr) {
-    return arr.filter(function(value, index, ar){return index % 3 === 0;});
+Exam.every_third = function (array) {
+    return array.filter((ignore, k) => k % 3 === 0);
 };
 
 // filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
