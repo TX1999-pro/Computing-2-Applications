@@ -14,10 +14,11 @@ const Exam = Object.create(null);
 //    for example:
 //      an input list of [1,2,3,4,5,6,7,8]
 //      returns [1,4,7]
-Exam.every_third = function () {
-    return;
+Exam.every_third = function (arr) {
+    return arr.filter(function(value, index, ar){return index % 3 === 0;});
 };
 
+// filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
 // Strings
 
@@ -29,8 +30,20 @@ Exam.every_third = function () {
 //       the input sentences "the cow jumped over the moon" and
 //                            "jack and jill went up the"
 //       returns "the jack cow and jumped jill over went the up moon the"
-Exam.merge_sentences = function () {
-    return;
+Exam.merge_sentences = function (sentence1,sentence2) {
+    const split1 = sentence1.split(" ");
+    const split2 = sentence2.split(" ");
+    if (split1.length !== split2.length){
+        throw "ValueError";
+    }
+    else {
+        let new_sentence = [];
+        for (var i = 0; i < split1.length; i++) {
+            new_sentence.push(split1[i]);
+            new_sentence.push(split2[i]);
+        }
+        return new_sentence.join(" ");
+    }
 };
 
 // Write a function that returns the number of lowercase letters in
@@ -38,8 +51,10 @@ Exam.merge_sentences = function () {
 //     for example:
 //          the input "sPonGe bOb"
 //          returns 6
-Exam.lowercase_count = function () {
-    return;
+Exam.lowercase_count = function (string) {
+    return string.split("").filter(function(val, i, arr) {
+        return string.split("")[i] !== string.toUpperCase().split("")[i];
+    }).length;
 };
 
 
@@ -47,13 +62,30 @@ Exam.lowercase_count = function () {
 
 // Write a function that returns the longest a key in the input object
 // whose keys are all strings.
-Exam.longest_key = function () {
-    return;
+
+// query - what if there are two keys of the same length?
+
+Exam.longest_key = function (Obj) {
+    let long = "";
+    Obj.keys().forEach((key) => {
+        if (key.length > long.length) {
+            long = key;
+        }
+    });
+    return long;
 };
 
 // Write a function that returns the largest value that is an even value in the
 // input dictionary whose values are all whole numbers.
-Exam.value_greatest_even = function () {
+Exam.value_greatest_even = function (dict) {
+    var large = 0;
+    dict.forEach((key) => {
+        key.forEach((value) => {
+            if ((value%2 === 0) && (value>=large)){
+               return; 
+            }
+        })
+    })
     return;
 };
 
@@ -65,8 +97,8 @@ Exam.value_greatest_even = function () {
 //
 // The username argument should not be set to a default,
 // but the location argument should default to "London".
-Exam.greeting = function () {
-    return;
+Exam.greeting = function (username, location="London") {
+    return "Hello, " + username + ", how is " + location + "?";
 };
 
 
@@ -77,8 +109,14 @@ Exam.greeting = function () {
 //     offset with a default of 0
 // The function returns the calculation x * scalar + offset for the input x
 // if the output value of the calculation is positive, otherwise it returns 0.
-Exam.floor_line = function () {
-    return;
+Exam.floor_line = function (x, scalar=1, offset=0) {
+    const y = x * scalar + offset;
+    if (y > 0){
+        return y;
+    }
+    else{
+        return 0;
+    };
 };
 
 export default Object.freeze(Exam);
