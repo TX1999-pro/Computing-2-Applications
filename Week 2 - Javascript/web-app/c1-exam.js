@@ -31,7 +31,7 @@ Exam.every_third = function (array) {
 //                            "jack and jill went up the"
 //       returns "the jack cow and jumped jill over went the up moon the"
 Exam.merge_sentences = function (sentence1,sentence2) {
-    const split1 = sentence1.split(" ");
+    const split1 = sentence1.split(" "); //""
     const split2 = sentence2.split(" ");
     if (split1.length !== split2.length){
         throw "ValueError";
@@ -42,7 +42,7 @@ Exam.merge_sentences = function (sentence1,sentence2) {
             new_sentence.push(split1[i]);
             new_sentence.push(split2[i]);
         }
-        return new_sentence.join(" ");
+        return new_sentence.join(" "); // ["a","b"] => "a b"
     }
 };
 
@@ -60,14 +60,14 @@ Exam.lowercase_count = function (string) {
 
 // Objects
 
-// Write a function that returns the longest a key in the input object
+// Write a function that returns the longest key in the input object
 // whose keys are all strings.
 
 // query - what if there are two keys of the same length?
 
 Exam.longest_key = function (Obj) {
     let long = "";
-    Obj.keys().forEach((key) => {
+    Object.keys(Obj).forEach((key) => {
         if (key.length > long.length) {
             long = key;
         }
@@ -78,15 +78,16 @@ Exam.longest_key = function (Obj) {
 // Write a function that returns the largest value that is an even value in the
 // input dictionary whose values are all whole numbers.
 Exam.value_greatest_even = function (dict) {
-    var large = 0;
-    dict.forEach((key) => {
-        key.forEach((value) => {
-            if ((value%2 === 0) && (value>=large)){
-               return; 
-            }
-        })
+    let largest = -Infinity;
+    Object.values(dict).forEach(function(value) {
+            if (value % 2 === 0){
+                if (value >= largest) {
+                    largest = value;
+                }
+            };
     })
-    return;
+    // reduce()
+    return largest;
 };
 
 
