@@ -33,6 +33,4 @@ Reverse.reverse = function (string) {
     return string.split("").reverse().join("");
 };
 
-debugger;
-
 export default Object.freeze(Reverse);
